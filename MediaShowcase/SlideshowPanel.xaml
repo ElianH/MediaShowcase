@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="MediaShowcase.SlideshowPanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             FocusManager.IsFocusScope="True"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <Border Background="Transparent">
+        <Grid x:Name="SlideshowGrid" FocusManager.IsFocusScope="True">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <StackPanel HorizontalAlignment="Left"
+                        Margin="50,20,50,0" 
+                        Orientation="Horizontal">
+
+                <TextBlock Foreground="WhiteSmoke" Text="Filter:" />
+                <ComboBox Margin="5,0"
+                          x:Name="GenreFilterComboBox" 
+                          IsTabStop="False"
+                          Focusable="False"/>
+                <TextBlock Foreground="WhiteSmoke"
+                           Margin="20,0,5,0" 
+                           Text="Sort by:" />
+                <ComboBox Margin="5,0"
+                          x:Name="SortByComboBox" 
+                          IsTabStop="False"
+                          Focusable="False"/>
+            </StackPanel>
+
+            <TextBlock Foreground="WhiteSmoke"
+                           x:Name="IndexTextBlock"
+                           HorizontalAlignment="Right"
+                           Margin="50,0" />
+
+            <Grid Grid.Row="1" x:Name="MovieItemsGrid"/>
+
+            <!-- Button Grid.Row="2" Content="Prev" Click="PrevButtonClick" HorizontalAlignment="Left"/-->
+            <Button Grid.Row="2" Content="Setup" Click="ShowConfigurationPanel" HorizontalAlignment="Center"/>
+            <!--Button Grid.Row="2" Content="Next" Click="NextButtonClick" HorizontalAlignment="Right"/-->
+
+            <Button Grid.Row="2" Click="WatchMovieButtonClick" HorizontalAlignment="Right" >
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Foreground" Value="WhiteSmoke"/>
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <TextBlock Text="Watch movie >>>" 
+                                               Foreground="{Binding Path=Foreground, RelativeSource={RelativeSource TemplatedParent}}"
+                                               FontSize="26" 
+                                               FontWeight="Bold" 
+                                               Cursor="Hand"/>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="Gold" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
+
+        </Grid>
+    </Border>
+</UserControl>
